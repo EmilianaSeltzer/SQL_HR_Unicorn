@@ -2,9 +2,9 @@
 
 SELECT ROUND(AVG(salario),2) FROM hr_unicorn.empleados;
 
-# Employees who salary is over the media, bringing the full name and salary
--- from the "Empleados" table, and the rest of columns with Left Joins, work title,
--- work area, starting and finishind work dates, State.
+# Employees whose salary is over the media, bringing the full name and salary
+-- from the "Empleados" table, and the rest of the columns with Left Joins, work title,
+-- work area, starting and finishing work dates, State.
 
 SELECT
 CONCAT(E.nombre_empleado,' ', E.apellido_empleado) AS Empleado,
@@ -52,4 +52,17 @@ ORDER BY salario DESC;
 # Finally, we can invoke the stored procedure
 
 CALL SP_VISTA_REPORTE_SALARIOS;
+
+# Create an event to automate the "Call" in the stored procedure
+-- First try if it is working
+
+SELECT @@event_scheduler;
+
+CREATE EVENT Ejecutar_SP_crear_reporting_salario_medio
+ON SCHEDULE EVERY 5 MINUTE
+STARTS CURRENT_TIMESTAMP
+DO
+CALL SP_VISTA_REPORTE_SALARIOS;
+
+SHOW EVENTS;
 
