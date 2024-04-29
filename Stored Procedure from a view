@@ -3,8 +3,7 @@
 SELECT ROUND(AVG(salario),2) FROM hr_unicorn.empleados;
 
 # Employees whose salary is over the media, bringing the full name and salary
--- from the "Empleados" table, and the rest of the columns with Left Joins, work title,
--- work area, starting and finishing work dates, State.
+-- from the "Empleados" table, and the other columns with Left Joins, work title, work area, starting and finishing work dates and,tate.
 
 SELECT
 CONCAT(E.nombre_empleado,' ', E.apellido_empleado) AS Empleado,
